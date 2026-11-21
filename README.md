@@ -7,7 +7,9 @@ one window.
 **This repository holds no code.** tk's source is private. This is where you:
 
 - **Report a problem** or **suggest something**: [open an issue](../../issues/new/choose). In tk,
-  **Report a problem** (in the tk menu) fills one in for you, with the details that help.
+  **Report a problem** (in the tk menu) fills one in for you, with the details that help, and its
+  **Send** button files it here in one click, **without a GitHub account** (issues sent that way are
+  labelled `from-app`).
 - **See what changed**: the [releases](../../releases) list each version's notes, and
   [CHANGELOG.md](CHANGELOG.md) has them all.
 - **Read how tk treats your data**: [PRIVACY.md](PRIVACY.md). In short: tk sends nothing about you

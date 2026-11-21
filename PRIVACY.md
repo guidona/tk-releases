@@ -1,7 +1,8 @@
 # Privacy
 
-**tk sends nothing about you anywhere.** There's no telemetry, no analytics and no account. What it
-reads stays on your machine and is shown only to you. This page lists what tk reads, what it writes,
+**tk sends nothing about you anywhere unless you ask it to.** There's no telemetry, no analytics and no
+account. What it reads stays on your machine and is shown only to you; the one thing it ever sends is
+a problem report, when you press Send, with exactly what the report shows. This page lists what tk reads, what it writes,
 and the few times it goes online.
 
 ## What tk reads
@@ -60,13 +61,16 @@ All in your home folder, all yours to read or delete:
 - **Shell setup,** the first time and on `tk shell setup --update`: Oh My Zsh and plugins that don't
   ship with tk are downloaded from GitHub.
 - **Markdown you view** may contain images on the web; showing them fetches them.
-- **Report a problem** opens a new issue on tk's public tracker
-  ([guidona/tk-releases](https://github.com/guidona/tk-releases)) in your browser (or a mail to tk's
-  maintainer in your mail app, or saves the report as a file where you choose), filled in with what
-  you wrote and the app's details (versions, OS, GPU; no file names or tab contents). The last lines
-  of tk's log go in only when you tick them, after you've seen them (or when you set `[logging]
-include_in_reports`). Nothing is sent until you submit the issue or send the mail yourself, and an
-  issue is public: you see all of it on GitHub first.
+- **Report a problem**, when you press **Send**, posts the report to tk's report relay (a small
+  service tk's maintainer runs on Cloudflare), which files it as a **public
+  issue** on tk's tracker ([guidona/tk-releases](https://github.com/guidona/tk-releases)): no GitHub
+  account needed. It sends what the dialog shows and nothing else: what you wrote, the app's details
+  (versions, OS, GPU; no file names or tab contents), the error you picked and, only if you tick it,
+  the log's lines. The relay keeps nothing; Cloudflare sees your IP address to limit how many reports
+  come from one place, and GitHub stores the issue. **Open an issue on GitHub** instead fills in the
+  same issue in your browser for you to submit; **Send by email** opens a mail to the maintainer in
+  your mail app; **Save report…** saves it as a file. Nothing is sent until you choose one, and
+  `[logging] include_in_reports` only ticks the log for you.
 
 ## tk's log
 
