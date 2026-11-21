@@ -1,0 +1,29 @@
+name: Report a problem
+description: Something in tk doesn't work as it should.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        In tk, **Report a problem** (tk menu) fills this in for you. Issues are public: read it once more before you submit.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: tk's version, the OS, the desktop and the GPU (tk menu → Report a problem, or About → Copy).
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: Optional. The lines from tk's log, if you chose to include them (your home folder, emails and tokens are masked).
+      render: text

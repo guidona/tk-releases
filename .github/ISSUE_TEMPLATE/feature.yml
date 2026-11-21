@@ -1,0 +1,16 @@
+name: Suggest something
+description: An idea for tk, or something that should work differently.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What would you like?
+      description: What you're trying to do, and what would make it easier.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: How do you do it today?
+      description: Optional. Your workaround, or what you use instead.
