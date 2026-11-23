@@ -6,6 +6,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [0.14.0] - 2026-11-22
+
 ### Added
 
 - **A log for troubleshooting**, and problem reports by email: tk logs what goes wrong (IPC failures,
@@ -28,6 +30,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - **Zoom and pan the workflow canvas**, as in Obsidian: Ctrl+scroll or a pinch zooms round the pointer, from
   25% to 300%, to read a node up close; drag empty space to move around; the zoom bar in the corner (−,
   the percentage for 100%, +) and the keys +, − and 0 do it too. The dot grid zooms and moves with it.
+  Hover a step's name or command for all of it, however much the node cuts off.
 - **Open in dev container**: right-click a folder that has a `.devcontainer/devcontainer.json` (or
   `.devcontainer.json`) in the Explorer, or the Explorer's ⋯ for the folder it shows. A new tab builds
   and starts the container with the devcontainer CLI, its output in view, then opens a shell inside; the
@@ -79,8 +82,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Drag a branch's label onto another branch in the Git view to **merge** it in or **rebase** it on
   top; it asks first, like the menus.
 - The Git view marks a branch checked out in another worktree with its folder, and the agent working
-  there when an agent tab is; click it to go to that agent tab, or open a terminal in the folder
- .
+  there when an agent tab is; click it to go to that agent tab, or open a terminal in the folder.
 - **Suggest** in the Git view's commit box: the agent working in that repository (or your default
   one) writes a commit message for the picked changes, in the repository's style. It's asked once,
   with its tools off, and the message lands in the box for you to edit; nothing is committed on its
@@ -113,8 +115,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   agent tab in its folder, from the tab's or the terminal's right-click menu or the command palette.
   `claude` quits in the terminal (tk asks first if it's in the middle of a turn), and the agent tab
   shows the whole conversation and goes on from there. The other way, **Continue in a terminal** in a
-  Claude agent tab's menu ends it and runs `claude --resume` on the conversation in a new terminal tab
- .
+  Claude agent tab's menu ends it and runs `claude --resume` on the conversation in a new terminal tab.
 - A **pin** in each side pane's header keeps that pane open in every tab you go to, and after a
   restart, until you unpin it or close it.
 - Kiro tabs show how full the session's context is, as Kiro reports it, and the credits the
@@ -124,18 +125,29 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   the folders you visit most (opens a tab there), your aliases (typed into the terminal), SSH hosts
   and containers. What you picked lately comes first. **F1** shows the keyboard shortcuts.
 - A welcome on the first launch: whether tk's zsh is set up, the four things you'll do most with
-  their shortcuts, and a way to the keyboard shortcuts. It stays in the tk menu as **Welcome**
- .
+  their shortcuts, and a way to the keyboard shortcuts. It stays in the tk menu as **Welcome**.
 - For development: screenshot tests of the main panes, and a coverage floor for the core and the
   app's unit tests that CI enforces.
 
 ### Changed
 
-- **Report a problem** opens an issue on tk's public tracker,
-  [guidona/tk-releases](https://github.com/guidona/tk-releases), with its form filled in (what
-  happened, the details, and the log if you tick it); you see all of it on GitHub and submit it
-  yourself. Copy, Save report… and Send by email stay. The tracker also has each release's notes, the
-  changelog, the privacy notes and a way to report security problems privately; it holds no code.
+- **Report a problem** is tighter now that reports can be public. Paths keep only the file's name, URLs
+  only their host, and IP addresses, host names, this machine's, your login's and your SSH hosts' names,
+  credentials in URLs, `password=`-style values and more kinds of tokens (Google, npm, GitLab, Stripe,
+  JWT) are masked. **Send** asks before posting, needs a description or a picked error, and can't post
+  the same report twice; the log is asked for on each report (not carried over) and can be edited before
+  it goes. Send uses the system's proxy. Opening the report reads only the end of the log, and a run
+  that keeps failing in new ways saves and offers only so many. Log files are yours alone. The relay
+  shows what happened as text (no links or images), takes only JSON and has a cap for everyone together.
+  The public changelog drops the private issue numbers and file links it had left. Its layout is new:
+  what happened, the related error as cards, what's attached as rows you can open, and **Send** with
+  **Other ways** (GitHub, email, save, copy) in the footer.
+- **Report a problem** sends reports to tk's public tracker,
+  [guidona/tk-releases](https://github.com/guidona/tk-releases), as issues: **Send** posts it in one
+  click, no GitHub account needed (through tk's report relay; what you see in the dialog and nothing
+  else), and **Open an issue on GitHub** fills in the same issue in your browser. Copy, Save report…
+  and Send by email stay. The tracker also has each release's notes, the changelog, the privacy notes
+  and a way to report security problems privately; it holds no code.
 - Your message heading an agent's turn is a quiet card in regular weight, not bold text with a dot.
 - Markdown headings in the view pane are in the text's colour, set apart by size and weight, as in an
   agent's reply (no longer peach).
@@ -172,8 +184,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   grey figures, instead of a solid coloured number badge; an agent working or waiting rings the dot.
   A group's sheet bar shows even when it holds one tab.
 - Dialogs share one box, header and footer: the title (with a line under it when there's more to say)
-  and × at the top, the buttons on the right at the bottom, the same corners and spacing everywhere
- .
+  and × at the top, the buttons on the right at the bottom, the same corners and spacing everywhere.
 - Text boxes, lists and numbers look the same in every form and dialog (Settings, SSH, schedules and
   limits, the agents board, workflows, aliases, the Git view's confirm bar): one height, border and
   corner. The board's agent picker was a system dropdown; Settings' font preview sits under its list.
@@ -205,14 +216,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   outputs are rows you connect by dragging from an output to an input (or onto the step for a new
   one); an input nobody feeds shows its value, set in Details with **Browse…** for a file or folder.
   The run dialog has Browse too, **Fit** and Ctrl+scroll zoom the canvas, and the starters use the new
-  style. Existing workflows with `env` keep working. Removing a connection from its card works again
- .
+  style. Existing workflows with `env` keep working. Removing a connection from its card works again.
 - Each workflow in the list has a **⋯** button, and right-click opens the same menu: run, edit, its last
   run, trust a project's, and **Move to the trash**.
 - Right-click in a terminal is short again: what's under the pointer and the clipboard first, then
   **Split ▸**, **Open ▸** (Explorer, Git, Remote, Monitor, Aliases, a new tab) and **Close ▸** (the open
-  side panes) as submenus that open on hover, click or →. A tab's right-click menu has **Split ▸** too
- .
+  side panes) as submenus that open on hover, click or →. A tab's right-click menu has **Split ▸** too.
 - The dropdowns in Settings and the agent picker on the Agents board open in tk's own menu, like
   the rest of the window, instead of the system's list. Esc closes the list, not Settings.
 - Tooltips are in tk's style, like its menus, instead of the system's grey boxes.
@@ -226,7 +235,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   Amend beside it. Double-click a file to open it: an uncommitted one in the editor at its first
   change, one in a commit in the viewer at that revision.
 - The font size reaches past the terminal: side panes, agent conversations and notes scale with it,
-  and **Ctrl+scroll** changes it like Ctrl+= and Ctrl+-, in any tab (part of #17).
+  and **Ctrl+scroll** changes it like Ctrl+= and Ctrl+-, in any tab.
 - Destructive actions ask the same way everywhere and say exactly what will happen: killing a process
   (from a menu or a tab's Kill all), removing containers, disconnecting a host. In the Git view, a
   hard reset, discarding changes (all, or one file), and deleting a branch, tag or stash offer
@@ -280,8 +289,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   it (a long one stays two lines, all of it on hover), the command as a command whatever shape Kiro
   sends it in, and raw input only folded under Details. Board cards keep long questions short.
 - tmux with its mouse mode on (and any program that asks for the mouse) gets right-clicks instead of
-  tk's menu; Shift+right-click still opens tk's menu, and tk's comes back when the program lets go
- .
+  tk's menu; Shift+right-click still opens tk's menu, and tk's comes back when the program lets go.
 - The Monitor's Tabs section brings the current tab into view even when it's drawn before its list has
   a height; it could stay scrolled away from it.
 - The × on a tab with splits (and middle-click, and the tab menu's Close tab) closes the whole tab, every
@@ -395,22 +403,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   CLAUDE.md and Kiro steering to edit; scheduled tasks start an agent at a time each day while tk
   runs; spending limits (a day's, a folder's) warn when agents pass them.
 - Agent tabs: a reply reads as Markdown while it streams (headings, lists and code as they come, each
-  finished block fading in) instead of turning into Markdown when it ends
- .
+  finished block fading in) instead of turning into Markdown when it ends.
 - Agent tabs: right-click in the conversation copies the selection, a reply (as text or Markdown),
   a command or a path, quotes the selection in your next message, or puts one of your messages back
-  to change and send again; the message box has Cut, Copy, Paste and Select all
- .
+  to change and send again; the message box has Cut, Copy, Paste and Select all.
 - The Monitor opens on every tab: beside an agent's conversation and beside a note too (Ctrl+Shift+M
-  or the activity bar), as does the Agents board on a note
- .
+  or the activity bar), as does the Agents board on a note.
 - The Monitor's Tabs section lists agent tabs too: their agent's processes, CPU and memory, and what
   the conversation says (working, waiting for you, ready) with its cost so far; right-click stops the
   agent.
 - Nerd Font icons in a prompt (powerlevel10k, starship…) show in the terminal instead of empty boxes:
   tk ships the Symbols Nerd Font as its last fallback. The terminal's font is a setting too:
-  `[terminal] font_family` in config.toml, or Settings → Terminal → Font
- .
+  `[terminal] font_family` in config.toml, or Settings → Terminal → Font.
 - Agent tabs: a command the agent ran reads like one, in shell colours (the command, flags, strings,
   paths) on a light tint, and a file it edited is a chip with its name and the lines out and in; the
   gap after "Ran" and "Edited" is one space. Diffs of shell, TOML, Ruby and Lua files are coloured
@@ -418,33 +422,26 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Agent tabs: slash commands work as in the agents' CLIs. `/model`, `/clear` and `/resume` (Kiro's
   `/chat new` and `/chat resume`) open tk's own model menu, a new conversation and the folder's past
   ones; commands that need the agent's own screen (`/agents`, `/config`, Kiro's `/agent create`,
-  `/settings`…) open in a terminal tab; after a command, its subcommands are listed
- .
+  `/settings`…) open in a terminal tab; after a command, its subcommands are listed.
 - Settings → Terminal → Font lists the monospace fonts you have (Nerd Fonts marked), with a preview of
-  a prompt in the one you pick, instead of a box to type a name in
- .
+  a prompt in the one you pick, instead of a box to type a name in.
 - Agent tabs: a question's Allow, Always and Deny are smaller, on the question's own line (top right;
-  under it when narrow), with the command or the change below; smaller on the Agents board too
- .
-- Agent tabs: a command the agent ran is tinted more lightly, and at its clearest under the pointer
- .
+  under it when narrow), with the command or the change below; smaller on the Agents board too.
+- Agent tabs: a command the agent ran is tinted more lightly, and at its clearest under the pointer.
 - Agent tabs: code blocks in a reply are coloured like the file viewer's (as soon as each block is
   finished while it streams), and its headings take the text's colour, set apart by weight and size,
   instead of an orange-brown.
 - An action that fails in the background (saving, refreshing, loading a diff, opening a link) says so in
-  a short notice instead of failing silently, and the main process logs such failures
- .
+  a short notice instead of failing silently, and the main process logs such failures.
 - Small fixes from the code scan: the window declares its language (for screen readers), alias packs
   and shell plugins sort as people read them, and the IPC array check passes only the item to its
   validator.
 - Side panes stack: opening one on a side where another is open puts it under that one (the Monitor
   under the Explorer) instead of closing it. A line between them shares the height (kept per pane),
-  each closes alone, and F6 moves between them; the file viewer still covers the pane it opened from
- .
+  each closes alone, and F6 moves between them; the file viewer still covers the pane it opened from.
 - Agent tabs get the Explorer and Git (Ctrl+Shift+E, Ctrl+Shift+G or the activity bar), on the
   agent's folder: follow what it changes (both catch up when a turn ends), open a file over the
-  conversation, and mention a path in your message from the Explorer's menu
- .
+  conversation, and mention a path in your message from the Explorer's menu.
 - The Git view's actions (switch, merge, commit, push, stash…) run in the background, without a
   terminal or a free prompt, and show what git said; one that needs you (a password, a passphrase, an
   editor) says so and opens a terminal with it on a click. `[git] run_in_terminal = true` (or Settings)
@@ -462,7 +459,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   time, in an order that comes from the file alone: pipes, `needs` and named values, ties in the
   order they're written; a cycle is an error that lists it. A failed step skips
   exactly what depends on it, and the run says why. A timeout or a cancel stops a step and
-  everything it started. See [docs/WORKFLOWS.md](docs/WORKFLOWS.md).
+  everything it started. See docs/WORKFLOWS.md.
 - Workflows are checked before they run, and every problem names its field and line: an unknown
   version, a bad step ID, `run` and `uses` together, a reference to a missing step, input, output or
   secret, an unknown tool, a timeout that isn't positive, a default of the wrong type; likely
@@ -474,9 +471,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - What runs without asking: reads; a write step asks once per run; a destructive or `confirm` one
   every time, with its command and environment exactly as they'll run (**Run step**, **Skip step**,
   **Stop workflow**). A project's workflow runs once you trust its content, and a change asks
-  again. Secrets live in your keyring and are redacted from everything tk records (#139,
-  #151). Each run is recorded in `~/.local/state/tk/runs/` and exports as Markdown or JSON
- .
+  again. Secrets live in your keyring and are redacted from everything tk records. Each run is recorded in `~/.local/state/tk/runs/` and exports as Markdown or JSON.
 - From the terminal: `tk wf ls`, `tk wf run <id> name=value` (each step and its output as it runs,
   approvals inline, Ctrl+C cancels; `--yes`, `--json`; `--from <step> --run <run-id>` reruns from a
   step, `--only <step>` tests one), `tk wf validate`, `new`, `edit`, `trust`, `runs`, `report`, and
@@ -501,15 +496,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Starter workflows: **New workflow** (and `tk wf new <id> --starter <name>`) starts blank or from
   one of five: Diagnose Linux service, Diagnose production pods, Search large logs, Check server
   health and Restart failed services.
-- For development: `make sonar` scans the code with a local SonarQube (`dev/sonar/`)
- .
+- For development: `make sonar` scans the code with a local SonarQube (`dev/sonar/`).
 
 - Agent tabs: a permission mode menu next to the model, like Shift+Tab in a terminal `claude`: **Ask**,
   **Accept edits** (edits without asking; commands still ask) or **Plan** (reads and plans, changes
   nothing); Kiro's own modes when it offers them. The one you pick is kept for that folder, and a tab
   that asks less is marked, on its tab and its board card. A question now says what **Always** would
-  save and where (a rule for one exact command says so)
- .
+  save and where (a rule for one exact command says so).
 
 - A default agent: `[agents] default` (Settings → AI agents) picks the agent Ctrl+Shift+I and **New
   agent** start, and puts it first in the New agent menus. An agent tab's tooltip names its agent.
@@ -632,8 +625,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
   Fedora and Arch.
 - A very long line in a workflow step's **Outputs** box no longer slows the editor down, and the
   terminal font list runs fontconfig's `fc-list` from `/usr/bin` only, never from a folder on your
-  PATH. Workflows' logic is unit-tested, and the SonarQube quality gate passes
- .
+  PATH. Workflows' logic is unit-tested, and the SonarQube quality gate passes.
 - The Monitor no longer runs past the window's edge when its side pane is narrower than 480 px,
   which hid its right side and its gear.
 - On a wide Monitor, the Claude section puts this window, today and the last 30 days side by side
@@ -671,8 +663,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Choose the files to commit in the Git view: each uncommitted file has a checkbox (all checked; Space
   toggles), staged files are marked, and **Commit** takes only the checked ones, leaving the rest
   uncommitted. **Amend** puts them into the last commit, keeping its message or with a new one, and
-  warns when that commit is already pushed. Right-click a file to leave it out or discard its changes
- .
+  warns when that commit is already pushed. Right-click a file to leave it out or discard its changes.
 - Closing a tab where a command or program is still running, or a connected remote tab, asks first,
   and so does closing the window: one dialog lists what's running and which notes aren't saved, with
   **Save all and close**. Idle tabs close as before. "Don't ask again" (or `[terminal]
@@ -682,23 +673,17 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
   replace, open or copy the link under the pointer, and in Markdown notes bold, italic, code, link,
   headings, bulleted and numbered lists and quotes.
 - Blame in the file viewer has three settings, **Off**, **Line** (the current line's author and
-  message, the default) and **Gutter** (every line), remembered between files; **B** cycles them
- .
+  message, the default) and **Gutter** (every line), remembered between files; **B** cycles them.
 - **Close tabs to the right** in a tab's right-click menu, next to **Close other tabs**; unsaved
-  notes and running commands ask first, as they do there
- .
+  notes and running commands ask first, as they do there.
 - Drag a tab along the tab strip to move it (a marker shows where it lands), or move the current tab
-  with Ctrl+Shift+PageUp / PageDown. Ctrl+Tab, Alt+1…9 and the restored session follow the new order
- .
+  with Ctrl+Shift+PageUp / PageDown. Ctrl+Tab, Alt+1…9 and the restored session follow the new order.
 - The file viewer's line numbers light up under the pointer, the selected lines' numbers stay
-  highlighted, and the current line's number is brighter
- .
-- A small git mark next to **Blame** and at the start of the line blame while blame is on
- .
+  highlighted, and the current line's number is brighter.
+- A small git mark next to **Blame** and at the start of the line blame while blame is on.
 - Right-click a line number in the file viewer (or one of the selected lines) to copy a link to
   those lines on each remote, at the current commit or on the branch (GitHub, GitLab, Bitbucket,
-  Gitea and Codeberg), or to copy the line numbers or `path:line`
- .
+  Gitea and Codeberg), or to copy the line numbers or `path:line`.
 - The note editor edits like a code editor: Ctrl+D adds the next match, Alt+click adds a cursor and
   Alt+drag selects a block; Alt+↑/↓ moves a line, Ctrl+Shift+D duplicates it, Ctrl+Shift+K deletes
   it, Ctrl+L selects it; brackets and quotes close themselves. In Markdown notes Ctrl+B, Ctrl+I and
@@ -726,15 +711,13 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
 
 - A side pane keeps its width when you switch views: every pane on a side (Explorer, file viewer,
   Git, Monitor…) uses that side's width, 40% of the tab to start, and dragging a divider sets it for
-  all of them. Wide mode in the Git view and the Monitor still goes back to it
- .
+  all of them. Wide mode in the Git view and the Monitor still goes back to it.
 
 ### Fixed
 
 - Long menus, such as the Git view's branch list, no longer run past the bottom of the window: a
   menu fits the window and scrolls, and one with many items gets a filter at the top (type to narrow
-  it, ↓ to move into the list, Enter for the first match)
- .
+  it, ↓ to move into the list, Enter for the first match).
 - Agent notifications are calmer and right: by
   default tk tells you only when an agent asks for you, by ringing the terminal bell (for Claude Code:
   `claude config set --global preferredNotifChannel terminal_bell`) or sending a desktop
@@ -744,8 +727,7 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
   it, and several at once arrive as one. Settings → Notifications (`[notifications]` in config.toml)
   also turns off the "command finished" notifications.
 - Starting tk while it's already running brings the running app to the front instead of starting a
-  second one, so two apps no longer overwrite each other's saved tabs
- .
+  second one, so two apps no longer overwrite each other's saved tabs.
 - Every jump from one side pane to another can go back with ‹: from a blame or a file's history to
   the Git view, back to the file at the same line, scroll and revision; from the Explorer's History
   to the Explorer; from a folder in the viewer or the Monitor to the Explorer, back to where you were.
@@ -754,26 +736,20 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
   and Remote pane now are (a colour they used was never defined).
 - On an alpha, beta or rc, What's new shows what that pre-release adds (the changelog's
   `[Unreleased]`) under its version, marked Installed.
-- `tk note` exits 0 when the note opens, as `tk view` does; it printed an error and exited 1
- .
-- `tk note` and `tk-app <folder>` no longer log "An object could not be cloned" in the window
- .
+- `tk note` exits 0 when the note opens, as `tk view` does; it printed an error and exited 1.
+- `tk note` and `tk-app <folder>` no longer log "An object could not be cloned" in the window.
 - Enter in the dialog that asks before closing tabs no longer discards unsaved notes: it saves them,
   or, with only running commands listed, keeps the tabs open.
-- Closing several tabs asks "Close these tabs?", not "Close this tab?"
- .
-- The Git view's branch menu sorts names the way people count: topic-2 before topic-10
- .
+- Closing several tabs asks "Close these tabs?", not "Close this tab?".
+- The Git view's branch menu sorts names the way people count: topic-2 before topic-10.
 - A Markdown note's right-click menu shows the Bold, Italic and Link shortcuts (Ctrl+B, Ctrl+I,
   Ctrl+K).
 - In the file viewer, pressing on a line number selects that line and dragging selects more lines
-  (Shift+click extends); it used to select the numbers as text
- .
+  (Shift+click extends); it used to select the numbers as text.
 - The Git view keeps the commit message you typed until a commit lands, so a commit a hook refuses
   doesn't lose it.
 - A link to lines on a remote says "not pushed yet" when the remote doesn't have that commit or
-  branch, and the blame card offers **Open on the remote** only for commits that are there
- .
+  branch, and the blame card offers **Open on the remote** only for commits that are there.
 - The Git view fits a side pane at its starting width: a narrow pane leaves out the Author and Commit
   columns (both in the commit's details) and the title, instead of scrolling sideways and clipping
   the search box; a wider pane or wide mode shows them.
@@ -799,8 +775,7 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
   systemd unit or container, CPU and memory charts). Another user's process offers "Kill with sudo in
   a new tab". The list stays still while the pointer is on it. ⤢ in the Monitor's header widens it
   over most of the tab. `tk monitor --json --procs` prints the same list for scripts and agents.
-- The Monitor's **Tabs** section manages processes too
- : right-click a tab to interrupt its running
+- The Monitor's **Tabs** section manages processes too: right-click a tab to interrupt its running
   command (Ctrl+C), stop or kill all its processes (the shell stays), open its details, copy its PIDs
   or close it; right-click a process in a tab's tree for the same menu as the Processes list. How many
   processes a tab lists before "Show more" is a setting (`[monitor] tab_processes`).
@@ -813,13 +788,11 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
   nothing is listed until you type, then the best ten matches, shown and inserted as `~/…` (so your
   history stays readable too). Picking one and pressing Enter goes there in one step; other commands
   keep Enter's usual behaviour in the menu. A typo while completing no longer rescans every folder,
-  and tk's own app data is left out of the folder index
- .
+  and tk's own app data is left out of the folder index.
 - Inside full-screen programs (tmux, vim, emacs, htop…), Alt+1…9, Ctrl+PageUp/PageDown, Ctrl+Tab
   and Ctrl+= / - / 0 now reach the program instead of switching tabs or changing the font size. tk's
   Ctrl+Shift shortcuts keep working everywhere.
-- **Rename tab** in a tab's right-click menu now renames it, the same as double-clicking the tab
- .
+- **Rename tab** in a tab's right-click menu now renames it, the same as double-clicking the tab.
 
 ## [0.10.0] - 2026-10-16
 
@@ -829,8 +802,7 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
   right-click → Find…) opens a find bar over the terminal with a match count, Enter / Shift+Enter
   (and F3) for next / previous, and toggles for match case, whole word and regular expressions. Every
   match is outlined and the current one filled; Esc closes it.
-- tk reopens your tabs after a restart, a crash or an update
- : their order, folders, names and open side panes,
+- tk reopens your tabs after a restart, a crash or an update: their order, folders, names and open side panes,
   and note tabs with their files. Remote tabs come back waiting for Enter instead of connecting at
   once. Settings → "Reopen my tabs" (`terminal.restore_tabs`) turns it off.
 
@@ -849,8 +821,7 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
 
 ### Fixed
 
-- A new tab's first prompt no longer shows as if a command had failed
- : tk's `.zlogin` forwarder left the exit status at 1
+- A new tab's first prompt no longer shows as if a command had failed: tk's `.zlogin` forwarder left the exit status at 1
   when you have no `~/.zlogin`.
 
 ## [0.9.2] - 2026-10-15
@@ -861,8 +832,7 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
   the commits around them (they picked up the Remote pane's layout through a shared class name).
   Long labels shorten with an ellipsis (the full name shows on hover) and leave room for the commit
   message; past two labels, the rest collapse into "+N".
-- The first `cd` in a new home folder no longer prints a `chpwd-recent-dirs` error
- : tk's zsh setup creates the folder
+- The first `cd` in a new home folder no longer prints a `chpwd-recent-dirs` error: tk's zsh setup creates the folder
   zsh-autocomplete keeps recent folders in.
 
 ### Added
@@ -883,8 +853,7 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
     reads.
   - The Git view's graph layout is plain, tested functions; its menus and the rebase editor have
     their own modules.
-  - One dialog component and one set of DOM helpers instead of copies; the CSS is one file per area
-   .
+  - One dialog component and one set of DOM helpers instead of copies; the CSS is one file per area.
   - Prettier formats the code, ESLint checks it, and JSDoc types are checked in CI.
   - `docs/ARCHITECTURE.md` has a code map: where each feature lives and how to add one.
 - Scrollbars are dark and thin everywhere, including the code viewer, notes, dialogs and horizontal
@@ -924,8 +893,7 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
 
 ### Fixed
 
-- tk used a lot of memory and CPU, and its downloads were large
- . Measured on the packaged app against 0.8.1:
+- tk used a lot of memory and CPU, and its downloads were large. Measured on the packaged app against 0.8.1:
   - One tab: 308 → 261 MB. Chromium's network service and GPU work now run in the main process
     instead of two more processes (`TK_GPU_PROCESS=1` brings the GPU process back), and CodeMirror
     and the Markdown renderer load when you first open a file or a note.
@@ -1045,8 +1013,7 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
 
 ### Changed
 
-- `docs/READINESS.md`: a new gap, **18. Polish and product feel**
- : a design system with shared components, one
+- `docs/READINESS.md`: a new gap, **18. Polish and product feel**: a design system with shared components, one
   keyboard model, a quality bar for every pane (empty, loading and error states, first use, keyboard,
   narrow windows, large data, failures), a first-run experience, consistent confirmation and undo
   for destructive actions, and a week of dogfooding. Gap 14 now names the core workflows and a
@@ -1062,8 +1029,7 @@ confirm_close = false`, also in Settings) stops asking about running things; uns
 
 ## [0.5.1] - 2026-10-14
 
-Packages and releases (towards #7 and
-#8).
+Packages and releases.
 
 ### Added
 
@@ -1123,8 +1089,7 @@ Monitoring, note tabs, and fixes.
 
 ### Changed
 
-- A VS Code-like look for the Explorer, the Git view, the viewer's toolbar and the alias builder
- : dense 22–24px rows with flat highlights, small
+- A VS Code-like look for the Explorer, the Git view, the viewer's toolbar and the alias builder: dense 22–24px rows with flat highlights, small
   uppercase section titles, hairline separators instead of rounded cards, small flat branch and
   tag labels, file names coloured by git status, author names without avatars, and the command
   bar docked to the bottom edge.
@@ -1274,6 +1239,7 @@ First version.
 - AppImage packaging is configured but not yet tested.
 
 [Unreleased]: https://github.com/guidona/tk-releases/releases
+[0.14.0]: https://github.com/guidona/tk-releases/releases/tag/v0.14.0
 [0.12.0]: https://github.com/guidona/tk-releases/releases/tag/v0.12.0
 [0.11.0]: https://github.com/guidona/tk-releases/releases/tag/v0.11.0
 [0.10.2]: https://github.com/guidona/tk-releases/releases/tag/v0.10.2
